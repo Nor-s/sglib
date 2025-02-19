@@ -10,6 +10,12 @@ project(
 
 set(CMAKE_CXX_STANDARD 23)
 
+include_directories(
+  ${CMAKE_HOME_DIRECTORY}/include/
+  ${CMAKE_HOME_DIRECTORY}/external/
+)
+
+add_subdirectory(external/spdlog)
 add_subdirectory(src)
 add_subdirectory(test)
 
