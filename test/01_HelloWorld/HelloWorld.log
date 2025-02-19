@@ -1,0 +1,13 @@
+[HelloWorld][I][07:57:26.458] HelloWorld
+[HelloWorld][E][07:57:26.460] HelloWorld
+[HelloWorld][C][07:57:26.460] HelloWorld
+[HelloWorld][T][07:57:26.461] HelloWorld
+[HelloWorld][W][07:57:26.461] HelloWorld
+[HelloWorld][I][07:57:26.461] loop 100 print hello
+[HelloWorld][I][07:57:26.469] elapsed ms: 8.0104
+[HelloWorld][I][07:57:26.469] loop 100 print hello endl
+[HelloWorld][I][07:57:26.478] elapsed ms: 8.6114
+[HelloWorld][I][07:57:26.478] loop 1000 print hello
+[HelloWorld][I][07:57:26.548] elapsed ms: 69.815
+[HelloWorld][I][07:57:26.549] loop 1000 print hello endl
+[HelloWorld][I][07:57:26.655] elapsed ms: 106.0562
