@@ -1,8 +1,6 @@
 cmake_minimum_required(VERSION 3.21)
 message("Using CMake version ${CMAKE_VERSION}")
 
-
-
 project(
   sglib
   LANGUAGES CXX
