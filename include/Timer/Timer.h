@@ -24,11 +24,11 @@ private:
 	std::chrono::time_point<std::chrono::system_clock> start, end;
 };
 
-template <typename Func>
-void InvokeWithTimer(const TimerSpec& _timerSpec, Func _function)
+template <typename Func, typename... Args>
+void InvokeWithTimer(const TimerSpec& _timerSpec, Func _function, Args&&... _args)
 {
 	auto timer = PerformanceTimer(_timerSpec);
-	_function();
+	_function(std::forward<Args>(_args)...);
 }
 
 }	 // namespace sglib::timer
