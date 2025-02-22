@@ -26,14 +26,14 @@ void TestUniquePtr()
 	objects.reserve(TEST_COUNT);
 
 	{
-		sglib::timer::PerformanceTimer timer{{}};
+		sglib::timer::ScopePerformanceTimer timer{{}};
 		for (int i = 0; i < TEST_COUNT; ++i)
 		{
 			objects.push_back(std::make_unique<Object>());
 		}
 	}
 	{
-		sglib::timer::PerformanceTimer timer{{}};
+		sglib::timer::ScopePerformanceTimer timer{{}};
 		for (auto& obj : objects)
 		{
 			obj->DoSomething();
@@ -47,7 +47,7 @@ void TestSharedPtr()
 	objects.reserve(TEST_COUNT);
 
 	{
-		sglib::timer::PerformanceTimer timer{{}};
+		sglib::timer::ScopePerformanceTimer timer{{}};
 		for (int i = 0; i < TEST_COUNT; ++i)
 		{
 			objects.push_back(std::make_shared<Object>());
@@ -55,7 +55,7 @@ void TestSharedPtr()
 	}
 
 	{
-		sglib::timer::PerformanceTimer timer{{}};
+		sglib::timer::ScopePerformanceTimer timer{{}};
 		for (auto& obj : objects)
 		{
 			obj->DoSomething();
@@ -69,7 +69,7 @@ void TestRawPtr()
 	objects.reserve(TEST_COUNT);
 
 	{
-		sglib::timer::PerformanceTimer timer{{}};
+		sglib::timer::ScopePerformanceTimer timer{{}};
 		for (int i = 0; i < TEST_COUNT; ++i)
 		{
 			objects.push_back(new Object());
@@ -77,7 +77,7 @@ void TestRawPtr()
 	}
 
 	{
-		sglib::timer::PerformanceTimer timer{{}};
+		sglib::timer::ScopePerformanceTimer timer{{}};
 		for (auto obj : objects)
 		{
 			obj->DoSomething();
@@ -85,7 +85,7 @@ void TestRawPtr()
 	}
 
 	{
-		sglib::timer::PerformanceTimer timer{{}};
+		sglib::timer::ScopePerformanceTimer timer{{}};
 		for (auto obj : objects)
 		{
 			delete obj;

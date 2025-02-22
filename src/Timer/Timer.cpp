@@ -4,12 +4,12 @@
 namespace sglib::timer
 {
 
-PerformanceTimer::PerformanceTimer(const TimerSpec& a_TimerSpec) : m_spec(a_TimerSpec)
+ScopePerformanceTimer::ScopePerformanceTimer(const TimerSpec& a_TimerSpec) : m_spec(a_TimerSpec)
 {
 	start = std::chrono::system_clock::now();
 }
 
-PerformanceTimer::~PerformanceTimer()
+ScopePerformanceTimer::~ScopePerformanceTimer()
 {
 	end = std::chrono::system_clock::now();
 	std::chrono::duration<double> elapsedSeconds = end - start;

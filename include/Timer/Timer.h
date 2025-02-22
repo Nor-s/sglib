@@ -13,11 +13,11 @@ struct TimerSpec
 	double assertSeconds = 1.0;
 };
 
-class PerformanceTimer
+class ScopePerformanceTimer
 {
 public:
-	PerformanceTimer(const TimerSpec& a_TimerSpec);
-	~PerformanceTimer();
+	ScopePerformanceTimer(const TimerSpec& a_TimerSpec);
+	~ScopePerformanceTimer();
 
 private:
 	TimerSpec m_spec;
@@ -27,7 +27,7 @@ private:
 template <typename Func, typename... Args>
 void InvokeWithTimer(const TimerSpec& _timerSpec, Func _function, Args&&... _args)
 {
-	auto timer = PerformanceTimer(_timerSpec);
+	auto timer = ScopePerformanceTimer(_timerSpec);
 	_function(std::forward<Args>(_args)...);
 }
 
