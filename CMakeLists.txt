@@ -13,8 +13,8 @@ include_directories(
   ${CMAKE_HOME_DIRECTORY}/external/
 )
 
+set(BENCHMARK_ENABLE_TESTING OFF)
+add_subdirectory(external/benchmark)
 add_subdirectory(external/spdlog)
 add_subdirectory(src)
 add_subdirectory(test)
-
-
