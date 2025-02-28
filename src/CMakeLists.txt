@@ -4,6 +4,8 @@ set(SGLIB_SRC
     ./Commons/Logger.cpp
 
     ./Timer/Timer.cpp
+
+    ./Algorithm/Sort.cpp
 )
 
 add_library(sglib STATIC ${SGLIB_SRC})
