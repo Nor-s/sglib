@@ -154,6 +154,30 @@ void StableSort(_RandomAccessIter first, _RandomAccessIter last)
 	MergeSort(first, last, tempBuffer.begin(), std::less<>{});
 }
 
+template <typename _RandomAccessIter, typename _Pred>
+void InsertSort(_RandomAccessIter first, _RandomAccessIter last, _Pred pred)
+{
+	for (auto it = std::next(first); it != last; ++it)
+	{
+		auto cur = it;
+		for (auto inner = std::prev(cur); inner != std::prev(first); --inner)
+		{
+			if (pred(*inner, *cur))
+			{
+				break;
+			}
+			std::swap(*cur, *inner);
+			cur = inner;
+		}
+	}
+}
+
+template <typename _RandomAccessIter>
+void InsertSort(_RandomAccessIter first, _RandomAccessIter last)
+{
+	InsertSort(first, last, std::less<>{});
+}
+
 }	 // namespace sglib::algorithm
 
 #endif	  // SGLIB_ALGORITHM_SORT_H
