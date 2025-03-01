@@ -7,6 +7,8 @@
 #include "Algorithm/Sort.h"
 #include "Algorithm/Random.h"
 
+#include "Data/TestData.h"
+
 #define TEXT(s) (s)
 
 #endif

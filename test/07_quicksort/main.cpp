@@ -8,67 +8,7 @@
 
 #define TEST_DATA_SIZE 1'000
 using namespace sglib::algorithm;
-
-enum class DataType
-{
-	_ASC_SORTED_,
-	_DESC_SORTED_,
-	_SHUFFLED_
-};
-
-class TestData
-{
-public:
-	static std::vector<int> create_asc_sorted_vector()
-	{
-		static std::vector<int> sorted_vec;
-		if (sorted_vec.empty())
-		{
-			sorted_vec.resize(TEST_DATA_SIZE);
-			for (size_t i = 0; i < TEST_DATA_SIZE; ++i)
-			{
-				sorted_vec[i] = i;
-			}
-		}
-		return sorted_vec;
-	}
-	static std::vector<int> create_shuffle_vector()
-	{
-		static std::vector<int> shuffled_vec;
-		if (shuffled_vec.empty())
-		{
-			shuffled_vec.resize(TEST_DATA_SIZE);
-			for (size_t i = 0; i < TEST_DATA_SIZE; ++i)
-			{
-				shuffled_vec[i] = Random::RangeInt(0, TEST_DATA_SIZE);
-			}
-		}
-		return shuffled_vec;
-	}
-
-	static std::vector<int> create_desc_sorted_vector()
-	{
-		static std::vector<int> sorted_vec;
-		if (sorted_vec.empty())
-		{
-			sorted_vec = create_asc_sorted_vector();
-			std::reverse(sorted_vec.begin(), sorted_vec.end());
-		}
-		return sorted_vec;
-	}
-	static std::vector<int> create(DataType type)
-	{
-		switch (type)
-		{
-			case DataType::_ASC_SORTED_:
-				return create_asc_sorted_vector();
-			case DataType::_DESC_SORTED_:
-				return create_desc_sorted_vector();
-			case DataType::_SHUFFLED_:
-				return create_shuffle_vector();
-		}
-	}
-};
+using namespace sglib::data;
 
 using enum PivotSelectionMode;
 using enum DataType;
@@ -76,10 +16,11 @@ using enum DataType;
 template <DataType _DataType, PivotSelectionMode _Mode>
 static void BM_quicksort(benchmark::State& state)
 {
+	std::vector<int> raw_vec = TestData::create(_DataType, TEST_DATA_SIZE);
 	while (state.KeepRunning())
 	{
-		std::vector<int> vec = TestData::create(_DataType);
-		QuickSort(vec.begin(), vec.end(), _Mode);
+		std::vector<int> temp_vec = raw_vec;
+		QuickSort(temp_vec.begin(), temp_vec.end(), _Mode);
 	}
 }
 

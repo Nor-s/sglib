@@ -24,9 +24,6 @@ public:
 	}
 };
 
-std::random_device Random::rd{};
-std::mt19937 Random::mt19937{rd()};
-
 }	 // namespace sglib::algorithm
 
 #endif	  // SGLIB_ALGORITHM_RANDOM_H

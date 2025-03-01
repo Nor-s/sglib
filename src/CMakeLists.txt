@@ -5,7 +5,10 @@ set(SGLIB_SRC
 
     ./Timer/Timer.cpp
 
+    ./Algorithm/Random.cpp
     ./Algorithm/Sort.cpp
+
+    ./Data/TestData.cpp
 )
 
 add_library(sglib STATIC ${SGLIB_SRC})
