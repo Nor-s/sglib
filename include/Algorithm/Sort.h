@@ -19,18 +19,16 @@ enum class PivotSelectionMode
 template <typename _RandomAccessIter>
 _RandomAccessIter MedianOfThree(_RandomAccessIter first, _RandomAccessIter last)
 {
+	auto half = std::distance(first, last) >> 1;
 	last--;
 
 	if (first < last)
 	{
-		if (_RandomAccessIter mid = first + std::distance(first, last) / 2; *first <= *mid && *mid <= *last)
-		{
+		_RandomAccessIter mid = std::next(first, half);
+		if ((*mid > *first) != (*mid > *last))
 			return mid;
-		}
-		else if (*first <= *last && *last <= *mid)
-		{
+		if ((*last > *first) != (*last > *mid))
 			return last;
-		}
 	}
 	return first;
 }
@@ -46,7 +44,7 @@ _RandomAccessIter GetPivot(_RandomAccessIter first, _RandomAccessIter last, Pivo
 		case LAST:
 			return last - 1;
 		case MIDDLE:
-			return first + std::distance(first, last) / 2;
+			return first + (std::distance(first, last) >> 1);
 		case RANDOM:
 			return first + Random::RangeInt(0, std::distance(first, last - 1));
 		case MEDIAN_OF_THREE:
