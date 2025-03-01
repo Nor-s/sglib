@@ -16,7 +16,7 @@ using enum DataType;
 template <DataType _DataType, PivotSelectionMode _Mode>
 static void BM_quicksort(benchmark::State& state)
 {
-	std::vector<int> raw_vec = TestData::create(_DataType, TEST_DATA_SIZE);
+	std::vector<int> raw_vec = TestData::Create(_DataType, TEST_DATA_SIZE);
 	while (state.KeepRunning())
 	{
 		std::vector<int> temp_vec = raw_vec;
@@ -36,11 +36,11 @@ BENCHMARK(BM_quicksort<_DESC_SORTED_, MIDDLE>);
 BENCHMARK(BM_quicksort<_DESC_SORTED_, MEDIAN_OF_THREE>);
 BENCHMARK(BM_quicksort<_DESC_SORTED_, RANDOM>);
 
-BENCHMARK(BM_quicksort<_SHUFFLED_, FIRST>);
-BENCHMARK(BM_quicksort<_SHUFFLED_, LAST>);
-BENCHMARK(BM_quicksort<_SHUFFLED_, MIDDLE>);
-BENCHMARK(BM_quicksort<_SHUFFLED_, MEDIAN_OF_THREE>);
-BENCHMARK(BM_quicksort<_SHUFFLED_, RANDOM>);
+BENCHMARK(BM_quicksort<_DISORDER_, FIRST>);
+BENCHMARK(BM_quicksort<_DISORDER_, LAST>);
+BENCHMARK(BM_quicksort<_DISORDER_, MIDDLE>);
+BENCHMARK(BM_quicksort<_DISORDER_, MEDIAN_OF_THREE>);
+BENCHMARK(BM_quicksort<_DISORDER_, RANDOM>);
 
 int main(int argc, char** argv)
 {

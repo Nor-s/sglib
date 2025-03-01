@@ -35,10 +35,10 @@ public:
 
 }	 // namespace sglib
 
-#define SG_LOG_INFO(...) SPDLOG_LOGGER_INFO(::sglib::Logger::get().getLogger(), __VA_ARGS__)
-#define SG_LOG_ERROR(...) SPDLOG_LOGGER_ERROR(::sglib::Logger::get().getLogger(), __VA_ARGS__)
-#define SG_LOG_WARN(...) SPDLOG_LOGGER_WARN(::sglib::Logger::get().getLogger(), __VA_ARGS__)
-#define SG_LOG_LOG(...) SPDLOG_LOGGER_TRACE(::sglib::Logger::get().getLogger(), __VA_ARGS__)
-#define SG_LOG_CRITICAL(...) SPDLOG_LOGGER_CRITICAL(::sglib::Logger::get().getLogger(), __VA_ARGS__)
+#define SG_LOG_INFO(...) SPDLOG_LOGGER_INFO(::sglib::Logger::Get().getLogger(), __VA_ARGS__)
+#define SG_LOG_ERROR(...) SPDLOG_LOGGER_ERROR(::sglib::Logger::Get().getLogger(), __VA_ARGS__)
+#define SG_LOG_WARN(...) SPDLOG_LOGGER_WARN(::sglib::Logger::Get().getLogger(), __VA_ARGS__)
+#define SG_LOG_LOG(...) SPDLOG_LOGGER_TRACE(::sglib::Logger::Get().getLogger(), __VA_ARGS__)
+#define SG_LOG_CRITICAL(...) SPDLOG_LOGGER_CRITICAL(::sglib::Logger::Get().getLogger(), __VA_ARGS__)
 
 #endif	  // MINA_COMMONS_LOGGER_H

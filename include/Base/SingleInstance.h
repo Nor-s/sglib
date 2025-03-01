@@ -19,7 +19,7 @@ public:
 
 	~SingleInstance() = default;
 
-	static T& get()
+	static T& Get()
 	{
 		static T s_instance;
 		return s_instance;
