@@ -91,4 +91,69 @@ void QuickSort(_RandomAccessIter first, _RandomAccessIter last, PivotSelectionMo
 
 }	 // namespace sglib::algorithm
 
+namespace sglib::algorithm
+{
+
+template <typename _RandomAccessIter, typename _BufferLeftIter, typename _Pr>
+void Merge(_RandomAccessIter first, _RandomAccessIter mid, _RandomAccessIter last, _BufferLeftIter tempBuffer, _Pr pred)
+{
+	auto left = first;
+	auto right = mid;
+
+	auto endIter = tempBuffer + std::distance(first, last);
+
+	for (auto bufferIter = tempBuffer; bufferIter != endIter; bufferIter++)
+	{
+		// left < right
+		if (right == last || (left != mid && pred(*left, *right)))
+		{
+			*bufferIter = *left;
+			left++;
+		}
+		else
+		{
+			*bufferIter = *right;
+			right++;
+		}
+	}
+
+	for (auto it = first; it != last; ++it, ++tempBuffer)
+	{
+		*it = *tempBuffer;
+	}
+}
+
+template <typename _RandomAccessIter, typename _BufferLeftIter, typename _Pr>
+void MergeSort(_RandomAccessIter first, _RandomAccessIter last, _BufferLeftIter tempBuffer, _Pr pred)
+{
+	if (first + 1 >= last)
+	{
+		return;
+	}
+	auto half = std::distance(first, last) >> 1;
+	auto mid = std::next(first, half);
+
+	MergeSort(first, mid, tempBuffer, pred);
+	MergeSort(mid, last, tempBuffer + half, pred);
+
+	Merge(first, mid, last, tempBuffer, pred);
+}
+
+template <typename _RandomAccessIter>
+void StableSort(_RandomAccessIter first, _RandomAccessIter last)
+{
+	using _ValueType = std::iter_value_t<_RandomAccessIter>;
+
+	if (first + 1 >= last)
+	{
+		return;
+	}
+
+	auto size = std::distance(first, last);
+	std::vector<_ValueType> tempBuffer(size);
+	MergeSort(first, last, tempBuffer.begin(), std::less<>{});
+}
+
+}	 // namespace sglib::algorithm
+
 #endif	  // SGLIB_ALGORITHM_SORT_H
